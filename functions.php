@@ -68,6 +68,9 @@ function build_queries(string $question, array $answers, bool $includeAnswers = 
         }, array_map('urlencode', $queries)),
         array_map(function ($value) {
             return 'https://www.google.ca/search?q=' . $value;
+        }, array_map('urlencode', $queries)),
+        array_map(function ($value) {
+            return 'https://en.wikipedia.org/wiki/Special:Search?search=' . $value;
         }, array_map('urlencode', $queries))
     );
 }
