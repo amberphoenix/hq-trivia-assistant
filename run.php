@@ -13,14 +13,10 @@ $client = new GuzzleHttp\Client();
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-// Allow UA and X-HQ-Cleint to be overriden in env
-$xHqClient = getenv('HQ_CLIENT') ? getenv('HQ_CLIENT') : 'iOS/1.2.4 b59';
-$UserAgent = getenv('HQ_USER_AGENT') ? getenv('HQ_USER_AGENT') : 'hq-viewer/1.2.4 (iPhone; iOS 11.1.1; Scale/3.00)';
-
 $headers = [
-    'User-Agent'    => $UserAgent,
+    'User-Agent'    => getenv('HQ_USER_AGENT') ?? 'hq-viewer/1.2.4 (iPhone; iOS 11.1.1; Scale/3.00)',
     'Authorization' => 'Bearer ' . getenv('HQ_BEARER_TOKEN'),
-    'x-hq-client'   => $xHqClient,
+    'x-hq-client'   => getenv('HQ_CLIENT') ?? 'iOS/1.2.4 b59',
 ];
 
 try {
